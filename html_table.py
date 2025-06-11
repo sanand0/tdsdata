@@ -19,10 +19,12 @@ def generate_table(table_num, rows=100, cols=10):
     return f"<h1>Table {table_num}</h1><table><tr>{headers}</tr>{rows}</table>"
 
 
-html = f"""<!DOCTYPE html><html><head><title>Tables</title></head><body>
-{generate_table(1, rows=100, cols=10)}
-</body></html>"""
-
 Path("html_table").mkdir(exist_ok=True)
-Path("html_table/index.html").write_text(html)
-print("Generated html_table/index.html with 3 tables")
+
+for i in range(1, 51):
+    html = f"""<!DOCTYPE html><html><head><title>Table {i}</title></head><body>
+{generate_table(i, rows=100, cols=10)}
+</body></html>"""
+    Path(f"html_table/{i}.html").write_text(html)
+
+print("Generated html_table/*.html")
