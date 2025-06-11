@@ -17,6 +17,7 @@ seed(seed_value)
 fake = Faker()
 fake.seed_instance(seed_value)
 
+
 def create_structure():
     files = ["index.html"]
     for depth in range(4):
@@ -40,7 +41,7 @@ def ensure_connectivity(strings, k=5):
 def generate_html(filename, links):
     title = Path(filename).stem.replace("-", " ").title()
     nav = "".join(
-        f'<a href="{os.path.relpath(f"html/{link}", f"html/{os.path.dirname(filename)}")}">'
+        f'<a href="{os.path.relpath(f"crawl_html/{link}", f"crawl_html/{os.path.dirname(filename)}")}">'
         f"{Path(link).stem.replace('-', ' ').title()}</a><br>\n"
         for link in sorted(set(links))
     )
@@ -65,10 +66,10 @@ def main():
         return
 
     graph = ensure_connectivity(files)
-    Path("html").mkdir(exist_ok=True)
+    Path("crawl_html").mkdir(exist_ok=True)
 
     for file in files:
-        path = Path(f"html/{file}")
+        path = Path(f"crawl_html/{file}")
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(generate_html(file, graph[file]))
 

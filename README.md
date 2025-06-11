@@ -2,9 +2,9 @@
 
 Utilities to create datasets for the [Tools in Data Science](https://tds.s-anand.net/) course.
 
-## HTML files for crawling
+## Crawl HTML
 
-`make_html.py` generates a connected web of HTML files with random paths and cross-links for testing crawlers, web scrapers, and link analysis tools. It creates a hierarchical structure of HTML files (0-3 levels deep) with:
+`crawl_html.py` generates a connected web of HTML files with random paths and cross-links for testing crawlers, web scrapers, and link analysis tools. It creates a hierarchical structure of HTML files (0-3 levels deep) with:
 
 - Random English words for file and directory names. It uses the environment variable `RANDOM_SEED` for reproducible generation.
 - Generates multiple files at each level
@@ -19,14 +19,14 @@ How it works:
 Usage:
 
 ```bash
-# Generate HTML files in html/ directory
-python make_html.py
+# Generate HTML files in crawl_html/ directory
+python crawl_html.py
 
 # List file paths without creating files
-python make_html.py --list
+python crawl_html.py --list
 
 # Use custom random seed
-RANDOM_SEED=123 python make_html.py
+RANDOM_SEED=123 python crawl_html.py
 ```
 
 # License

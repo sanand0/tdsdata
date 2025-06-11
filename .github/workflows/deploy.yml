@@ -34,7 +34,7 @@ jobs:
       - uses: astral-sh/setup-uv@v5
       - env:
           TDS_RANDOM_SEED: ${{ secrets.TDS_RANDOM_SEED }}
-        run: uv run make_html.py
+        run: uv run crawl_html.py
 
       # Upload a specific page to GitHub Pages. Defaults to _site
       - uses: actions/upload-pages-artifact@v3
