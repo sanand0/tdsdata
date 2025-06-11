@@ -11,18 +11,18 @@ fake = Faker()
 fake.seed_instance(seed_value)
 
 
-def generate_table(table_num):
+def generate_table(table_num, rows=100, cols=10):
     rows = "".join(
-        f"<tr>{''.join(f'<td>{fake.word()}</td>' for _ in range(10))}</tr>" for _ in range(50)
+        f"<tr>{''.join(f'<td>{fake.word()}</td>' for _ in range(cols))}</tr>" for _ in range(rows)
     )
-    headers = "".join(f"<th>Col {i + 1}</th>" for i in range(10))
+    headers = "".join(f"<th>Col {i + 1}</th>" for i in range(cols))
     return f"<h1>Table {table_num}</h1><table><tr>{headers}</tr>{rows}</table>"
 
 
 html = f"""<!DOCTYPE html><html><head><title>Tables</title></head><body>
-{''.join(generate_table(i) for i in range(1, 31))}
+{generate_table(1, rows=100, cols=10)}
 </body></html>"""
 
 Path("html_table").mkdir(exist_ok=True)
 Path("html_table/index.html").write_text(html)
-print("Generated html_table/index.html with 30 tables")
+print("Generated html_table/index.html with 3 tables")
