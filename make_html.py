@@ -15,8 +15,7 @@ import os
 seed_value = int(os.environ.get("TDS_RANDOM_SEED", 42))
 seed(seed_value)
 fake = Faker()
-fake.seed_instance(int(os.environ.get("TDS_RANDOM_SEED", 42)))
-
+fake.seed_instance(seed_value)
 
 def create_structure():
     files = ["index.html"]
@@ -24,7 +23,7 @@ def create_structure():
         for _ in range(randint(10, 40)):
             parts = [fake.word().lower() for _ in range(randint(1, depth + 1))]
             files.append("/".join(parts) + ".html" if depth else f"{parts[0]}.html")
-    return list(set(files))
+    return list(sorted(set(files)))
 
 
 def ensure_connectivity(strings, k=5):
@@ -43,7 +42,7 @@ def generate_html(filename, links):
     nav = "".join(
         f'<a href="{os.path.relpath(f"html/{link}", f"html/{os.path.dirname(filename)}")}">'
         f"{Path(link).stem.replace('-', ' ').title()}</a><br>\n"
-        for link in set(links)
+        for link in sorted(set(links))
     )
     return f"""<!DOCTYPE html>
 <html><head><title>{title}</title></head>
