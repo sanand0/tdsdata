@@ -20,13 +20,26 @@ Usage:
 
 ```bash
 # Generate HTML files in crawl_html/ directory
-python crawl_html.py
+TDS_RANDOM_SEED=... python crawl_html.py
 
 # List file paths without creating files
-python crawl_html.py --list
+TDS_RANDOM_SEED=... python crawl_html.py --list
+```
 
-# Use custom random seed
-RANDOM_SEED=123 python crawl_html.py
+## HTML Table
+
+`html_table.py` generates an HTML file with 30 tables containing random data for testing table parsing, scraping, and data extraction tools. Each table has:
+
+- A numbered title (Table 1, Table 2, etc.)
+- 50 rows and 10 columns (Col 1 through Col 10)
+- Random English words in each cell using Faker
+- Uses the environment variable `TDS_RANDOM_SEED` for reproducible generation
+
+Usage:
+
+```bash
+# Generate HTML table file in html_table/ directory
+TDS_RANDOM_SEED=... python html_table.py
 ```
 
 # License
